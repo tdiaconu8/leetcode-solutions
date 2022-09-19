@@ -1,21 +1,21 @@
-from ast import List
+from typing import List
 
-
-def maxProfit(self, prices: List[int]) -> int:
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        
+        n = len(prices)
+        if n == 1:
+            return 0
+        
+        ans = 0
+        curMin = prices[0]
+        for i in range(1, n):
+            curProfit = prices[i] - curMin
+            if curProfit > ans:
+                ans = curProfit
+            curMin = min(curMin, prices[i])
+        
+        return ans
     
-    n, res = len(prices), 0
-    buy = prices[0]
-    
-    for i in range(1,n):
-        benefit = prices[i]-buy
-        if benefit > res:
-            res = benefit
-        if prices[i] < buy:
-            buy = prices[i]
-    
-    return res
-
-'''
-T: O(n)
-S: O(1)
-'''
+    # T : O(n)
+    # S : O(1)

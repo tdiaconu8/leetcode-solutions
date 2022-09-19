@@ -1,0 +1,13 @@
+from typing import List
+
+class Solution:
+    def runningSum(self, nums: List[int]) -> List[int]:
+        
+        n = len(nums)
+        for i in range(1, n):
+            nums[i] += nums[i-1]
+        
+        return nums
+    
+    # T : O(n)
+    # S : O(1)
