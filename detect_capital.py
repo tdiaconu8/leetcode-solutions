@@ -1,22 +1,22 @@
-def detectCapitalUse(word: str) -> bool:
-    
-    # all letters are not capitals (e.g. leetcode)
-    if word == word.lower():
-        return True
-    
-    # Only the first letter is capital
-    elif word[0].lower() + word[1:] == word.lower():
-        return True
-    
-    else:
-        if word[0].islower():
-            return False
-        elif word[0].isupper():
-            for i in range(1, len(word)):
-                if word[i].islower():
-                    return False
-            return True
+class Solution:
+    def detectCapitalUse(self, word: str) -> bool:
 
-# word = "USA"
-word = "FlaG"
-print(detectCapitalUse(word))
+        n = len(word)
+        caps = 0
+
+        for i in range(n):
+            char = word[i]
+            if char.lower() != char:
+                caps += 1
+        
+        if caps == 0:
+            return True
+        if caps == 1:
+            return word[0].lower() != word[0]
+        else:
+            return caps == n
+        
+        '''
+        T: O(n)
+        S: O(1)
+        '''
