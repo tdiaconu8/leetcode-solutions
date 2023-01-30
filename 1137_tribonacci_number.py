@@ -1,19 +1,15 @@
 class Solution:
     def tribonacci(self, n: int) -> int:
 
-        if n == 0:
-            return 0
-        if 1 <= n <= 2:
-            return 1
-        
-        t1, t2, t3 = 0, 1, 1
+        t = [0, 1, 1]
 
-        for i in range(3, n+1):
-            tmp = t3
-            t3 = t1 + t2 + t3
-            t1, t2 = t2, tmp
+        if n <= 2:
+            return t[n]
         
-        return t3
+        for i in range(3, n+1):
+            t[0], t[1], t[2] = t[1], t[2], t[0]+t[1]+t[2] 
+        
+        return t[-1]
 
         '''
         T: O(n)
