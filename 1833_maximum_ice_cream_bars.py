@@ -16,6 +16,6 @@ class Solution:
         return res
         
         '''
-        T: O(n)
+        T: O(nlogn)
         S: O(1) --> no extra space
         '''
