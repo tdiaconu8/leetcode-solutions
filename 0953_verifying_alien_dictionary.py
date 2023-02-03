@@ -21,6 +21,6 @@ class Solution:
 
         '''
         len(words) = n, max(len(word)) = m, len(order) = p
-        T: O(n*m)
+        T: O(p+n*m)
         S: O(p)
         '''
