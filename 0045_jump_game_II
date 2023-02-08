@@ -1,0 +1,15 @@
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+
+        n = len(nums)
+        dp = [n]*n
+        dp[0] = 0
+
+        for i in range(n):
+            for j in range(i, min(n, i+1+nums[i])):
+                dp[j] = min(dp[j], 1 + dp[i])
+        
+        return dp[-1]
+
+        # T: O(n^2)
+        # S: O(n)
