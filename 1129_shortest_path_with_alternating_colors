@@ -1,1 +1,38 @@
+from collections import deque, defaultdict
 
+class Solution:
+    def shortestAlternatingPaths(self, n: int, redEdges: List[List[int]], blueEdges: List[List[int]]) -> List[int]:
+
+        dists = [[-1,-1] for _ in range(n)]
+        redGraph, blueGraph = defaultdict(list), defaultdict(list)
+        # Build blue and red graph
+        for a, b in redEdges:
+            redGraph[a].append(b)
+        
+        for a, b in blueEdges:
+            blueGraph[a].append(b)
+        graph = [redGraph, blueGraph]
+
+        # BFS
+        queue = deque([(0,0,0), (0,0,1)]) # queue structure: node, current distance, and last edge color (red=0, blue=1)
+        vis = set()
+        vis.add((0,0))
+        vis.add((0,1))
+
+        while queue:
+            node, dist, col = queue.popleft()
+            dists[node][col] = dist
+            for neigh in graph[col^1][node]:
+                if (neigh,col) not in vis:
+                    vis.add((neigh,col))
+                    queue.append((neigh,dist+1,col^1))
+        
+        res = [-1] * n
+        for i in range(len(dists)):
+            r, b = dists[i]
+            if r == -1 or b == -1:
+                res[i] = max(r, b)
+            else:
+                res[i] = min(r,b)
+        
+        return res
