@@ -17,7 +17,7 @@ class Solution:
                 if neigh != par:
                     people += dfs(neigh, node, dist+1)
             if dist > 0:
-                self.res += (people-1)//seats+1
+                self.res += (people+seats-1)//seats
             return people
         
         dfs(0, 0, 0)
