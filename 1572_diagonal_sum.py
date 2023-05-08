@@ -1,19 +1,14 @@
 class Solution:
     def diagonalSum(self, mat: List[List[int]]) -> int:
 
-        n = len(mat)
-
-        res = 0
-        l, r = 0, n-1
+        n, res = len(mat), 0
 
         for i in range(n):
-            if l == r:
-                res += mat[i][l]
-            else:
-                res += mat[i][l] + mat[i][r]
-            l += 1
-            r -= 1
+            res += mat[i][i] + mat[i][n-1-i]
         
+        if n%2: 
+            res -= mat[n//2][n//2]
+
         return res
 
         # T: O(n)
