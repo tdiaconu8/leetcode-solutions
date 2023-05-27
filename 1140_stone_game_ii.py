@@ -1,8 +1,13 @@
 class Solution:
     def stoneGameII(self, piles: List[int]) -> int:
-
+        
+        # MEMOIZATION
+        # T: O(n^3)
+        # S: O(n^3)
+        
         n = len(piles)
 
+        # Here I used the caching system of Python, but feel free to use HashMap
         @cache
         def dfs(alice, i, M):
             if i >= n:
