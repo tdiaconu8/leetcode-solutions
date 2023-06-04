@@ -3,6 +3,9 @@ from collections import defaultdict
 class Solution:
     def numOfMinutes(self, n: int, headID: int, manager: List[int], informTime: List[int]) -> int:
 
+        # T: O(n)
+        # S: O(n)
+
         n = len(manager)
         graph = defaultdict(list)
 
